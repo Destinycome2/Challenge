@@ -1,0 +1,55 @@
+#!/bin/bash
+
+runner (){
+danger=('/usr/bin/file' '/usr/bin/stat' '/usr/bin/rm')
+
+for cmd in ${danger[@]}; do
+    if [ $1 == $cmd ]
+    then
+       read -p "Are you sure you want to execute file ? It will show the file type for $2. (Y/N) " input
+
+       if [ $input == 'Y' ]
+       then
+       $1 $2
+       echo "Done"
+       elif [ $input == 'N' ]
+       then
+       echo "No selected... exiting.."
+       fi
+    elif [ $1 == $cmd ]
+    then
+       read -p "Are you sure you want to execute file ? It will show the stat for $2. (Y/N) " input
+
+       if [ $input == 'Y' ]
+       then
+       $1 $2
+       echo "Done"
+       elif [ $input == 'N' ]
+       then
+       echo "No selected... exiting.."
+       fi
+    elif [ $1 == $cmd ]
+    then
+       read -p "Are you sure you want to execute file ? It will delete $2. (Y/N) " input
+
+       if [ $input == 'Y' ]
+       then
+       $1 $2
+       echo "Done"
+       elif [ $input == 'N' ]
+       then
+       echo "No selected... exiting.."
+       fi
+    fi
+done
+
+}
+
+alias file='runner /usr/bin/file $1'
+alias stat='runner /usr/bin/stat $1'
+alias rm='runner /usr/bin/rm $1'
+
+echo 'Dangerous commands now protected'
+[7:05 PM]
+source warn.sh
+March 6, 2023
